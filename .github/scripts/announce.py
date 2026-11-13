@@ -61,7 +61,8 @@ def build_payload(e: dict, site_url: str) -> dict:
         lines.append("")
         lines += [f"• {h}" for h in e["highlights"][:10]]
     if url:
-        lines += ["", f"[完整內容與圖鑑]({url})"]
+        label = "完整內容與圖鑑" if e.get("items") else "完整內容"
+        lines += ["", f"[{label}]({url})"]
     desc = "\n".join(lines)
     if len(desc) > DESC_LIMIT:
         desc = desc[: DESC_LIMIT - 1] + "…"
